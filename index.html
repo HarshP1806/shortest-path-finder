@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Shortest Path Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">⬡</span>
+                <span class="logo-text">PathFinder <span class="logo-ai">AI</span></span>
+            </div>
+            <div class="header-tagline">Visualize shortest path algorithms in real time</div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="main">
+
+        <!-- Left Panel: Controls -->
+        <aside class="panel panel-left">
+
+            <section class="control-group">
+                <h2 class="section-title">Algorithm</h2>
+                <div class="algo-selector">
+                    <button class="algo-btn active" data-algo="astar">A* (A-Star)</button>
+                    <button class="algo-btn" data-algo="dijkstra">Dijkstra</button>
+                    <button class="algo-btn" data-algo="bfs">BFS</button>
+                </div>
+            </section>
+
+            <section class="control-group">
+                <h2 class="section-title">Draw Mode</h2>
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="start">
+                        <span class="mode-dot dot-start"></span> Start Node
+                    </button>
+                    <button class="mode-btn" data-mode="end">
+                        <span class="mode-dot dot-end"></span> End Node
+                    </button>
+                    <button class="mode-btn" data-mode="wall">
+                        <span class="mode-dot dot-wall"></span> Draw Wall
+                    </button>
+                    <button class="mode-btn" data-mode="erase">
+                        <span class="mode-dot dot-erase"></span> Erase
+                    </button>
+                </div>
+            </section>
+
+            <section class="control-group">
+                <h2 class="section-title">Options</h2>
+                <label class="toggle-label">
+                    <input type="checkbox" id="diagonal-toggle" />
+                    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    Diagonal Movement
+                </label>
+                <label class="toggle-label" style="margin-top:10px">
+                    <input type="checkbox" id="heuristic-toggle" checked />
+                    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    Show Heuristic
+                </label>
+            </section>
+
+            <section class="control-group">
+                <h2 class="section-title">Speed</h2>
+                <div class="slider-row">
+                    <span class="slider-label">Slow</span>
+                    <input type="range" id="speed-slider" min="1" max="5" value="3" step="1" />
+                    <span class="slider-label">Fast</span>
+                </div>
+                <div class="speed-display" id="speed-display">Speed: 3×</div>
+            </section>
+
+            <section class="control-group action-group">
+                <button class="btn btn-primary" id="btn-start">
+                    ▶ Start Visualization
+                </button>
+                <button class="btn btn-secondary" id="btn-reset">
+                    ↺ Reset Path
+                </button>
+                <button class="btn btn-danger" id="btn-clear">
+                    ✕ Clear Grid
+                </button>
+            </section>
+
+            <section class="control-group legend-group">
+                <h2 class="section-title">Legend</h2>
+                <div class="legend">
+                    <div class="legend-item"><span class="leg-cell start"></span> Start</div>
+                    <div class="legend-item"><span class="leg-cell end"></span> End</div>
+                    <div class="legend-item"><span class="leg-cell wall"></span> Wall</div>
+                    <div class="legend-item"><span class="leg-cell visited"></span> Visited</div>
+                    <div class="legend-item"><span class="leg-cell path"></span> Path</div>
+                </div>
+            </section>
+
+        </aside>
+
+        <!-- Center: Grid -->
+        <div class="grid-container">
+            <div class="grid-header">
+                <div class="grid-info" id="grid-info">Click to place Start, End and Walls — then visualize!</div>
+                <div class="stats" id="stats" style="display:none">
+                    <span class="stat-item" id="stat-visited">Visited: 0</span>
+                    <span class="stat-sep">·</span>
+                    <span class="stat-item" id="stat-path">Path: —</span>
+                    <span class="stat-sep">·</span>
+                    <span class="stat-item" id="stat-length">Length: —</span>
+                </div>
+            </div>
+            <div class="grid-wrap">
+                <div id="grid"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span>PathFinder AI — Visualize A*, Dijkstra & BFS</span>
+        <span class="footer-keys">Drag to draw walls · Shift+drag to erase</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
